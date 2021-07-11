@@ -561,7 +561,7 @@ screen main_menu():
             text "[config.name!t]":
                 style "main_menu_title"
 
-            text "[config.version]":
+            text "v[config.version] - \"[tagline]\" Edition":
                 style "main_menu_version"
 
     key "K_ESCAPE" action Quit(confirm=False)

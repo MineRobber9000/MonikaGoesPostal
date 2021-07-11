@@ -6,7 +6,7 @@
 ## and decompile them for the builds to work.
 init -100 python:
     if not renpy.android:
-        for archive in ['audio','images','scripts','fonts']:
+        for archive in ['audio','images','fonts']:
             if archive not in config.archives:
                 renpy.error("DDLC archive files not found in /game folder. Check your installation and try again.")
 
@@ -14,18 +14,18 @@ init -100 python:
 init python:
     menu_trans_time = 1
     # Default message everyone sees in the game
-    splash_message_default = "This game is an unofficial fan game, unaffiliated with Team Salvato."
+    splash_message_default = "\"Monika could've solved this a lot faster with a gun is all I'm saying\" - my friend, playing DDLC"
     # Used sometimes to change splash messages if called upon
     splash_messages = [
-        "Please support Doki Doki Literature Club.",
-        "Monika is watching you code."
+        "\"Way to kill the group chat, Sayori\" - my friend",
+        "\"The Sayori death jokes are really easy to make\" - my friend\n\"I guess you could call them low-hanging fruit\" - me"
     ]
 
 image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign=0.5)
 
 # Main Menu Images
 image menu_logo:
-    "/mod_assets/DDLCModTemplateLogo.png"
+    "gui/logo.png"
     subpixel True
     xcenter 240
     ycenter 120
@@ -318,7 +318,9 @@ label splashscreen:
         # You can edit this message but you MUST have say it's not affiliated with Team Salvato
         # must finish the official game and has spoilers, and where to get DDLC from."
         "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
-        "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
+        "Even though I feel like that should be obvious, given the circumstances and the... experience you're about to have."
+        "You should really play the original game first, since there's no substitute for being in the driver's seat of this wild ride (no matter how good your favorite streamer is)."
+        "I mean, even the splash message is kind of a spoiler, so there's that too."
         "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
         menu:
             "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
@@ -449,7 +451,7 @@ label splashscreen:
     show intro with Dissolve(0.5, alpha=True)
     $ pause(3.0 - (datetime.datetime.now() - starttime).total_seconds())
     hide intro with Dissolve(max(0, 3.5 - (datetime.datetime.now() - starttime).total_seconds()), alpha=True)
-    if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
+    if renpy.random.randint(0,4)==0:
         $ splash_message = renpy.random.choice(splash_messages)
     show splash_warning "[splash_message]" with Dissolve(max(0, 4.0 - (datetime.datetime.now() - starttime).total_seconds()), alpha=True)
     $ pause(6.0 - (datetime.datetime.now() - starttime).total_seconds())

@@ -1,84 +1,4 @@
-image exception_bg = "#dadada"
-image fake_exception = Text("An exception has occurred.", size=40, style="_default")
-image fake_exception2 = Text("File \"game/script-ch5.rpy\", line 307\nSee traceback.txt for details.", size=20, style="_default")
-
-image splash_glitch:
-    subpixel True
-    "images/bg/splash-glitch.png"
-    alpha 0.0
-    pause 0.5
-    linear 0.5 alpha 1.0
-    pause 2.5
-    linear 0.5 alpha 0.0
-    "gui/menu_bg.png"
-    topleft
-    alpha 0.0
-    parallel:
-        xoffset 0 yoffset 0
-        linear 0.25 xoffset -100 yoffset -100
-        repeat
-    parallel:
-        linear 0.5 alpha 1.0
-    parallel:
-        ypos 0
-        pause 1.0
-        easeout 1.0 ypos -500
-image splash_glitch2:
-    subpixel True
-    "gui/menu_bg.png"
-    topleft
-    block:
-        xoffset 0 yoffset 0
-        linear 0.05 xoffset -100 yoffset -100
-        repeat
-
-image splash_glitch_m:
-    subpixel True
-    "gui/menu_art_m.png"
-    zoom 0.5
-    xpos 0.5 ypos 0.5
-    pause 0.1
-    parallel:
-        xpos 0.3 ypos 1.2
-        linear 0.08 ypos 0.1
-        repeat
-    parallel:
-        pause 0.5
-        alpha 0.0
-
-image splash_glitch_n:
-    subpixel True
-    "gui/menu_art_n.png"
-    zoom 0.5
-    pause 0.2
-    xpos 0.8 ypos 0.8
-    pause 0.05
-    xpos 0.2 ypos 0.7
-    pause 0.05
-    xpos 0.4 ypos 0.2
-    pause 0.05
-    xpos 0.7 ypos 1.2
-    pause 0.05
-    xpos 0.1 ypos 1.0
-    pause 0.05
-    xpos 0.2 ypos 0.6
-    pause 0.05
-    xpos 0.9 ypos 0.4
-    pause 0.05
-    alpha 0.0
-
-image splash_glitch_y:
-    subpixel True
-    "gui/menu_art_y.png"
-    zoom 0.5
-    ypos 1.3
-    block:
-        xpos 0.85
-        pause 0.02
-        xpos 0.81
-        pause 0.02
-        repeat
-
+define config.debug_sound = True
 
 label ch5_main:
     stop music fadeout 2.0
@@ -216,147 +136,107 @@ label ch5_main:
     "But she really leaves me no choice."
     "I gently open the door."
     mc "{cps=30}.......Sayo--{/cps}{nw}"
-    $ persistent.playthrough = 1
-    $ persistent.anticheat = renpy.random.randint(100000, 999999)
-    $ renpy.save_persistent()
-    $ delete_character("sayori")
-    $ in_sayori_kill = True
     window hide(None)
     window auto
     play music td
-    show s_kill_bg2
-    show s_kill2
-    show s_kill_bg as s_kill_bg at s_kill_bg_start
-    show s_kill as s_kill at s_kill_start
-    $ pause(3.75)
-    show s_kill_bg2 as s_kill_bg
-    show s_kill2 as s_kill
-    $ pause(0.01)
-    show screen tear(20, 0.1, 0.1, 0, 40)
-    play sound "sfx/s_kill_glitch1.ogg"
-    $ pause(0.25)
-    stop sound
-    hide screen tear
-    hide s_kill_bg
-    hide s_kill
-    show s_kill_bg_zoom zorder 1
-    show s_kill_bg2_zoom zorder 1
-    show s_kill_zoom zorder 3
-    show s_kill2_zoom zorder 3
-    show s_kill as s_kill_zoom_trans zorder 3:
-        truecenter
-        alpha 0.5
-        zoom 2.0 xalign 0.5 yalign 0.05
-        pause 0.5
-        dizzy(1, 1.0)
-    $ pause(2.0)
-    show noise zorder 3:
-        alpha 0.0
-        linear 3.0 alpha 0.25
-    show vignette zorder 3:
-        alpha 0.0
-        linear 3.0 alpha 0.75
-    $ pause(1.5)
-    show white zorder 2
-    show splash_glitch zorder 2
-    $ pause(1.5)
-    show screen tear(20, 0.1, 0.1, 0, 40)
-    play sound "sfx/s_kill_glitch1.ogg"
-    $ pause(0.2)
-    stop sound
-    hide screen tear
-    $ pause(4.0)
-    show screen tear(20, 0.1, 0.1, 0, 40)
-    play sound "sfx/s_kill_glitch1.ogg"
-    $ pause(0.2)
-    stop sound
-    hide screen tear
-    hide splash_glitch
-    show splash_glitch2 zorder 2
-    show splash_glitch_m zorder 2
-    show splash_glitch_n zorder 2
-    show splash_glitch_y zorder 2
-    $ pause(0.75)
-    hide white
-    hide splash_glitch2
-    hide splash_glitch_m
-    hide splash_glitch_n
-    hide splash_glitch_y
-    show exception_bg zorder 2
-    show fake_exception zorder 2:
-        xpos 0.1 ypos 0.05
-    show fake_exception2 zorder 2:
-        xpos 0.1 ypos 0.15
-    python:
-        try: sys.modules['renpy.error'].report_exception("Oh jeez...I didn't break anything, did I? Hold on a sec, I can probably fix this...I think...\nActually, you know what? This would probably be a lot easier if I just deleted her. She's the one who's making this so difficult. Ahaha! Well, here goes nothing.", False)
-        except: pass
-    $ pause(6.0)
-
-
-    "..."
-    hide fake_exception
-    hide fake_exception2
-    hide exception_bg
-    "What the hell...?"
-    "{i}What the hell??{/i}"
-    "Is this a nightmare?"
-    "It...has to be."
-    "This isn't real."
-    "There's no way this can be real."
-    "Sayori wouldn't do this."
-    "Everything was normal up until a few days ago."
-    "That's why I can't believe what my eyes are showing me...!"
-    scene black with dissolve_cg
-    "I suppress the urge to vomit."
-    "Just yesterday..."
-    "I told Sayori I would be there for her."
-    "I told her I know what's best, and that everything will be okay."
-    "Then why...?"
-    "Why would she do this...?"
-    "How could I be so helpless?"
-    "What did I do wrong?"
+    scene bg sayori_bedroom with None
+    pause 4
+    stop music fadeout 1
+    "She's still sound asleep."
+    "I decide to shake her awake."
+    mc "Come on, dummy, it's time for school!"
+    show sayori 1ba at t11
+    "She slowly blinks herself awake."
+    s "...It is?"
+    "Then she looks over at her alarm clock, which says the time is 09:12."
+    s "...I overslept again!"
+    scene bg residential_day with wipeleft
+    "Sayori makes eggs and toast for breakfast, despite my objections."
+    "I can't deny it was delicious, though."
+    "Afterwards, we make way for the school."
+    scene bg club_day with dissolve_scene_full
+    show sayori 1a at t21
+    show monika 1a at t22
+    m "Hi, [player]!"
+    m "...and Sayori..."
+    show sayori at t11
+    show monika at thide
+    hide monika
+    "Monika lets out a deep sigh before heading to the closet, presumably to grab something."
+    s "I wonder what that was about?"
+    mc "Yeah, weird."
+    s "Anyways, what do you want to do?"
+    mc "Well, I was going to wait and make sure everything was okay here first--"
+    "Monika suddenly calls out from the closet."
+    m "Hey, Natsuki, I can't find this thing I'm looking for. You're the only other person who roots through the closet, so can you help me find it?"
+    show natsuki 1a at t31
+    n "I guess..."
+    show natsuki at thide
+    hide natsuki
+    "She heads off to the closet to help Monika."
+    s "That's weird. Usually, she'd say what she was looking for."
+    mc "Maybe it's a surprise?"
+    s "Maybe, but she would have told me."
+    s "Unless..."
+    s "...it's a super secret!"
+    mc "Maybe, but I don't know."
+    # uh oh spaghetti-os, here's our first death
+    # for each character's death, delete their file, then play the sound and do the thing
+    # character deletion is commented out for the time being since I'm still working on this
+    # $ delete_character("natsuki")
+    play sound "/mod_assets/sfx/shot.ogg"
+    show white zorder 4:
+        alpha 0.6
+        linear 0.25 alpha 0
+    mc "What was that?"
+    m "Woops, I accidentally broke a shelf. My bad!"
+    mc "O...kay..."
+    m "Oh, there it is! Hey, Yuri, you're pretty tall, maybe you can grab this from the top shelf?"
+    show yuri 1a at t33
+    y "Sure..."
+    show yuri at thide
+    hide yuri
+    "Yuri heads over to the closet."
+    mc "How do you break one of those shelves? Aren't they made out of metal?"
+    m "Uh, very carefully, [player]. Very carefully."
+    mc "That's {i}hilarious{/i}, Monika. Where do you get your jokes, {i}the back of a Laffy Taffy?{/i}"
+    s "Don't be mean to Monika, she's trying her best."
+    mc "She's {i}breaking{/i} a {i}metal{/i} shelf."
+    mc "How do you {i}do{/i} that?"
+    # $ delete_character("yuri")
+    play sound "/mod_assets/sfx/shot.ogg"
+    show white zorder 4:
+        alpha 0.6
+        linear 0.25 alpha 0
+    m "Uh, like that, I guess."
+    m "Sayori, can we have a chat? President to Vice President?"
+    "Sayori starts to head over to the closet, but I stop her."
+    mc "Sayori, I don't think she's breaking a metal shelf. Those sounded like gunshots."
+    mc "Haven't you noticed that Natsuki and Yuri haven't reappeared from the closet?"
+    s "[player], you're being paranoid. Did you stay up late last night watching horror movies again?"
+    mc "Sayori, I'm serious, please don't go."
+    mc "I would hate to see something happen to you..."
     if sayori_confess:
-        "Confessing to her..."
-        "I shouldn't have confessed to her."
-        "That's not what Sayori needed at all."
-        "She even told me how painful it is for others to care about her."
-        "Then why did I confess to her, and make her feel even worse?"
+        mc "{i}Especially since, y'know, we just started dating yesterday...{/i}"
+        "I whisper that last part, since I don't want to tell {i}everyone{/i} just yet."
     else:
-        "Turning down her confession..."
-        "That has to have been what pushed her over the edge."
-        "Her agonized scream still echoes in my ears."
-        "Why did I do that to her when she needed me the most?"
-    "Why was I so selfish?"
-    "This is my fault--!"
-    "My swarming thoughts keep telling me everything I could have done to prevent this."
-    "If I just spent more time with her."
-    "Walked her to school."
-    if sayori_confess:
-        "And remained friends with her, like it always has been..."
-    else:
-        "And gave her what I know she wanted out of our relationship..."
-    "...Then I could have prevented this."
-    "I know I could have prevented this!"
-    "Screw the Literature Club."
-    "Screw the festival."
-    "I just...lost my best friend."
-    "Someone I grew up with."
-    "She's gone forever now."
-    "Nothing I do can bring her back."
-    "This isn't some game where I can reset and try something different."
-    "I had only one chance, and I wasn't careful enough."
-    "And now I'll carry this guilt with me until I die."
-    "Nothing in my life is worth more than hers..."
-    "But I still couldn't do what she needed from me."
-    "And now..."
-    "I can never take it back."
-    "Never."
-    "Never."
-    "Never."
-    "Never."
-    "Never..."
-    $ in_sayori_kill = False
-
+        mc "We've been friends for so long..."
+    mc "Can't you just trust me?"
+    s "There's nothing to be afraid of. It's just Monika, after all."
+    show sayori at thide
+    hide sayori
+    "And just like that, she's gone."
+    s "Wha--{nw}"
+    $ _history_list.pop(-1)
+    # $ delete_character("sayori")
+    play sound "/mod_assets/sfx/shot.ogg"
+    show white zorder 4:
+        alpha 0.6
+        linear 0.25 alpha 0
+    s "Wha--{fast}"
+    "Like, {i}gone{/i} gone."
+    "I decide to investigate for myself."
+    "Allan, please add more details." # this is where I'll pick up writing next time I get a boost of motivation.
 
     return
 

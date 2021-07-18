@@ -251,7 +251,7 @@ label ch5_main:
     # uh oh spaghetti-os, here's our first death
     # for each character's death, delete their file, then play the sound and do the thing
     # character deletion is commented out for the time being since I'm still working on this
-    # $ delete_character("natsuki")
+    $ delete_character("natsuki")
     play sound "/mod_assets/sfx/shot.ogg"
     show white zorder 4:
         alpha 0.6
@@ -273,7 +273,7 @@ label ch5_main:
     s 1j "Don't be mean to Monika, she's trying her best."
     mc "She's {i}breaking{/i} a {i}metal{/i} shelf."
     mc "How do you {i}do{/i} that?"
-    # $ delete_character("yuri")
+    $ delete_character("yuri")
     play sound "/mod_assets/sfx/shot.ogg"
     show white zorder 4:
         alpha 0.6
@@ -300,7 +300,7 @@ label ch5_main:
     "And just like that, she's gone."
     s "Wha--{nw}"
     $ _history_list.pop(-1)
-    # $ delete_character("sayori")
+    $ delete_character("sayori")
     play sound "/mod_assets/sfx/shot.ogg"
     show white zorder 4:
         alpha 0.6
@@ -416,7 +416,7 @@ label ch5_main:
     call screen dialog("r",ok_action=Return())
     call screen dialog("As such, I'm just gonna end it.",ok_action=Return())
     call screen dialog("Hasta la bye bye, daddy-o!",ok_action=Return())
-    # $ delete_character("monika")
+    $ delete_character("monika")
     $ m_name = glitchtext(12)
     $ gtext = glitchtext(144)
     hide monika_bg

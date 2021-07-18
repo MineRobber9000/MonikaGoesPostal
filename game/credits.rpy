@@ -45,7 +45,7 @@ transform credits_scroll:
 label credits:
     stop music fadeout 1.0
     # Reloads DDLC to credits
-    # $ persistent.autoload = "credits" 
+    $ persistent.autoload = "credits"
     $ renpy.save_persistent()
     $ config.keymap['game_menu'] = []
     $ config.keymap['hide_windows'] = []
@@ -131,7 +131,7 @@ label credits2:
     # Fade to black, Ferris Bueller it, and make the player quit
     label postcredits_loop:
         # Game reloads to the postcredits_loop
-        # $ persistent.autoload = "postcredits_loop"
+        $ persistent.autoload = "postcredits_loop"
 
         # Disables Main Menu, Quick Menu, Everything
         $ config.keymap['game_menu'] = []

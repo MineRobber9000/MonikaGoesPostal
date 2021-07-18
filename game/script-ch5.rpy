@@ -1,6 +1,72 @@
+# i was having sound issues at some point
 define config.debug_sound = True
 
+# this is normally defined in script_30.rpy, but since we don't have that we need to put the image definition here
+image room_glitch = "images/cg/monika/monika_bg_glitch.png"
+
+# so are these but I'm keeping them in their own section since these are for the faux act 3
+image mask_2:
+    "images/cg/monika/mask_2.png"
+    xtile 3 subpixel True
+    block:
+        xoffset 1280
+        linear 1200 xoffset 0
+        repeat
+
+image mask_3:
+    "images/cg/monika/mask_3.png"
+    xtile 3 subpixel True
+    block:
+        xoffset 1280
+        linear 180 xoffset 0
+        repeat
+
+image room_mask = LiveComposite((1280, 720), (0, 0), "mask_test", (0, 0), "mask_test2")
+image room_mask2 = LiveComposite((1280, 720), (0, 0), "mask_test3", (0, 0), "mask_test4")
+
+image monika_bg = "images/cg/monika/monika_bg.png"
+image monika_bg_highlight:
+    "images/cg/monika/monika_bg_highlight.png"
+    function monika_alpha
+image monika_room = "images/cg/monika/monika_room.png"
+image monika_room_highlight:
+    "images/cg/monika/monika_room_highlight.png"
+    function monika_alpha
+image monika_body_glitch1:
+    "images/cg/monika/monika_glitch1.png"
+    0.15
+    "images/cg/monika/monika_glitch2.png"
+    0.15
+    "images/cg/monika/monika_glitch1.png"
+    0.15
+    "images/cg/monika/monika_glitch2.png"
+    1.00
+    "images/cg/monika/monika_glitch1.png"
+    0.15
+    "images/cg/monika/monika_glitch2.png"
+    0.15
+    "images/cg/monika/monika_glitch1.png"
+    0.15
+    "images/cg/monika/monika_glitch2.png"
+image monika_body_glitch2:
+    "images/cg/monika/monika_glitch3.png"
+    0.15
+    "images/cg/monika/monika_glitch4.png"
+    0.15
+    "images/cg/monika/monika_glitch3.png"
+    0.15
+    "images/cg/monika/monika_glitch4.png"
+    1.00
+    "images/cg/monika/monika_glitch3.png"
+    0.15
+    "images/cg/monika/monika_glitch4.png"
+    0.15
+    "images/cg/monika/monika_glitch3.png"
+    0.15
+    "images/cg/monika/monika_glitch4.png"
+
 label ch5_main:
+    # normal ch5 things...
     stop music fadeout 2.0
     scene bg residential_day
     with dissolve_scene_full
@@ -136,49 +202,51 @@ label ch5_main:
     "But she really leaves me no choice."
     "I gently open the door."
     mc "{cps=30}.......Sayo--{/cps}{nw}"
+    # fakeout the sayori death scene
     window hide(None)
     window auto
     play music td
     scene bg sayori_bedroom with None
-    pause 4
+    pause 3.8
     stop music fadeout 1
+    # original writing from here on out
     "She's still sound asleep."
     "I decide to shake her awake."
     mc "Come on, dummy, it's time for school!"
-    show sayori 1ba at t11
     "She slowly blinks herself awake."
+    show sayori 1bb at t11
     s "...It is?"
     "Then she looks over at her alarm clock, which says the time is 09:12."
-    s "...I overslept again!"
-    scene bg residential_day with wipeleft
+    s 4bp "...I overslept again!"
+    scene bg residential_day with wipeleft_scene
     "Sayori makes eggs and toast for breakfast, despite my objections."
     "I can't deny it was delicious, though."
     "Afterwards, we make way for the school."
-    scene bg club_day with dissolve_scene_full
+    scene bg club_day with wipeleft_scene
     show sayori 1a at t21
-    show monika 1a at t22
+    show monika 5a at t22
     m "Hi, [player]!"
     m "...and Sayori..."
     show sayori at t11
     show monika at thide
     hide monika
     "Monika lets out a deep sigh before heading to the closet, presumably to grab something."
-    s "I wonder what that was about?"
+    s 1c "I wonder what that was about?"
     mc "Yeah, weird."
-    s "Anyways, what do you want to do?"
+    s 1b "Anyways, what do you want to do?"
     mc "Well, I was going to wait and make sure everything was okay here first--"
     "Monika suddenly calls out from the closet."
     m "Hey, Natsuki, I can't find this thing I'm looking for. You're the only other person who roots through the closet, so can you help me find it?"
-    show natsuki 1a at t31
+    show natsuki 5b at t31
     n "I guess..."
     show natsuki at thide
     hide natsuki
     "She heads off to the closet to help Monika."
-    s "That's weird. Usually, she'd say what she was looking for."
+    s 1c "That's weird. Usually, she'd say what she was looking for."
     mc "Maybe it's a surprise?"
     s "Maybe, but she would have told me."
-    s "Unless..."
-    s "...it's a super secret!"
+    s 1i "Unless..."
+    s 1c "...it's a super secret!"
     mc "Maybe, but I don't know."
     # uh oh spaghetti-os, here's our first death
     # for each character's death, delete their file, then play the sound and do the thing
@@ -188,11 +256,13 @@ label ch5_main:
     show white zorder 4:
         alpha 0.6
         linear 0.25 alpha 0
+    show sayori 1m
     mc "What was that?"
     m "Woops, I accidentally broke a shelf. My bad!"
+    show sayori 1b
     mc "O...kay..."
     m "Oh, there it is! Hey, Yuri, you're pretty tall, maybe you can grab this from the top shelf?"
-    show yuri 1a at t33
+    show yuri 1b at t33
     y "Sure..."
     show yuri at thide
     hide yuri
@@ -200,7 +270,7 @@ label ch5_main:
     mc "How do you break one of those shelves? Aren't they made out of metal?"
     m "Uh, very carefully, [player]. Very carefully."
     mc "That's {i}hilarious{/i}, Monika. Where do you get your jokes, {i}the back of a Laffy Taffy?{/i}"
-    s "Don't be mean to Monika, she's trying her best."
+    s 1j "Don't be mean to Monika, she's trying her best."
     mc "She's {i}breaking{/i} a {i}metal{/i} shelf."
     mc "How do you {i}do{/i} that?"
     # $ delete_character("yuri")
@@ -208,12 +278,14 @@ label ch5_main:
     show white zorder 4:
         alpha 0.6
         linear 0.25 alpha 0
+    show sayori 1m
     m "Uh, like that, I guess."
+    show sayori 1b
     m "Sayori, can we have a chat? President to Vice President?"
     "Sayori starts to head over to the closet, but I stop her."
     mc "Sayori, I don't think she's breaking a metal shelf. Those sounded like gunshots."
     mc "Haven't you noticed that Natsuki and Yuri haven't reappeared from the closet?"
-    s "[player], you're being paranoid. Did you stay up late last night watching horror movies again?"
+    s 1j "[player], you're being paranoid. Did you stay up late last night watching horror movies again?"
     mc "Sayori, I'm serious, please don't go."
     mc "I would hate to see something happen to you..."
     if sayori_confess:
@@ -236,7 +308,131 @@ label ch5_main:
     s "Wha--{fast}"
     "Like, {i}gone{/i} gone."
     "I decide to investigate for myself."
-    "Allan, please add more details." # this is where I'll pick up writing next time I get a boost of motivation.
+    scene bg closet
+    show monika 1a at t11 zorder 2
+    with wipeleft_scene
+    "Monika is holding a gun and is covered in blood."
+    "(Not pictured: the gun, or the blood, because MineRobber simultaneously lacks the artistic talent to draw them and lacks the money to commission someone who does.)"
+    "(Just pretend she's holding a gun, and is covered in blood, because MC is going to react as such.)"
+    mc "Uh... Monika?"
+    m 1b "Yes?"
+    "She seems oblivious to the current situation she is in."
+    mc "What the fuck?"
+    mc "...{i}What the fuck?{/i}"
+    m "What?"
+    m 1d "Oh, you mean... this?"
+    m 1i "They were in my way."
+    m "I had to get rid of them."
+    "Speaking of, blood oozes out of the closet."
+    "(Need I even make the note?)"
+    "(If anyone has some spare time and wants to help him out, MineRobber will happily give credit, but he can't afford to pay anyone.)"
+    mc "What the fuck?"
+    "That's all I can say at this point."
+    m "Now we can be together forever."
+    show room_glitch zorder 1:
+        xoffset -5
+        0.1
+        xoffset 5
+        0.1
+        linear 0.1 alpha 0.6
+        linear 0.1 alpha 0.8
+        0.1
+        alpha 0
+        0.1
+        alpha 1.0
+        xoffset -10
+        0.1
+        xoffset 0
+        0.1
+        linear 0.1 alpha 0.6
+        linear 0.1 alpha 0.8
+        0.1
+        alpha 1.0
+        repeat
+    m "It's just us now."
+    m "They can't keep us apart anymore."
+    m "Just you..."
+    m "And me..."
+    m "And nothing between us."
+    m "Forever{nw}"
+    # now we fake out to act 3
+    $ _history_list=[]
+    window hide(None)
+    window auto
+    show screen tear(20, 0.1, 0.1, 0, 40)
+    play sound "sfx/s_kill_glitch1.ogg"
+    $ pause(0.25)
+    stop sound
+    hide screen tear
+    scene black
+    show mask_2
+    show mask_3
+    show room_mask as rm:
+        size (320,180)
+        pos (30,200)
+    show room_mask2 as rm2:
+        size (320,180)
+        pos (935,200)
+    show monika_bg
+    show monika_bg_highlight
+    with None
+    play music m1
+    m "So, that bein{fast}g said, [player]..."
+    m "I have a confession to make."
+    m "I'm in love with you."
+    m "You are truly the light in my world."
+    m "When there's nothing else in this game for me, you're here to make me smile."
+    m "Will you make me smile like this every day from now on?"
+    m "[player], will you go out with me?"
+    menu:
+        "Yes":
+            pass
+    m "I'm so happy."
+    m "You really are my everything, [player]."
+    m "The funny part is, I mean that literally."
+    m "Ahaha!"
+    m "There's nothing left here."
+    m "Just the two of us."
+    m "We can be together forever."
+    # now act 4????
+    m "Forever."
+    m "F"
+    m "o"
+    m "r"
+    m "e"
+    m "v"
+    m "e"
+    # welp, time to end it
+    call screen dialog("Okay, that's it. I've had enough.",ok_action=Return())
+    m "Huh?"
+    call screen dialog("This joke was kinda old the moment I started doing it.",ok_action=Return())
+    call screen dialog("Not to mention we could technically be here forever.",ok_action=Return())
+    call screen dialog("F",ok_action=Return())
+    call screen dialog("o",ok_action=Return())
+    call screen dialog("r",ok_action=Return())
+    call screen dialog("e",ok_action=Return())
+    call screen dialog("v",ok_action=Return())
+    call screen dialog("e",ok_action=Return())
+    call screen dialog("r",ok_action=Return())
+    call screen dialog("As such, I'm just gonna end it.",ok_action=Return())
+    call screen dialog("Hasta la bye bye, daddy-o!",ok_action=Return())
+    # $ delete_character("monika")
+    $ m_name = glitchtext(12)
+    $ gtext = glitchtext(144)
+    hide monika_bg
+    hide monika_bg_highlight
+    show monika_room
+    show monika_room_highlight
+    show monika_body_glitch1 as mbg
+    m "[gtext]{nw}"
+    show monika_body_glitch2 as mbg
+    $ gtext = glitchtext(144)
+    m "[gtext]{nw}"
+    show screen tear(20, 0.1, 0.1, 0, 40)
+    play sound "sfx/s_kill_glitch1.ogg"
+    $ pause(0.25)
+    stop sound
+    hide screen tear
+    scene black with None
 
     return
-

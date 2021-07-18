@@ -146,6 +146,7 @@ label credits2:
         show monika 2i at t11
         
         # Ferris Bueller time
+        $ m_name = "Monika"
         m "...You're still here?"
         m "..."
         m 4n "...It's over."

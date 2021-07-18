@@ -55,7 +55,7 @@ label credits:
     $ config.allow_skipping = False
     play music "mod_assets/bgm/moddedcredits.mp3" noloop
     scene black
-    show credits_header "Monika Has A Gun":
+    show credits_header "Monika Goes Postal":
         yanchor 0.5 ypos 0.5
         xanchor 0.5 xpos 0.5
         alpha 0.0

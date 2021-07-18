@@ -23,7 +23,7 @@ define gui.about = _("")
 # This is the name of your build that the Ren'Py SDK will read.
 # The build name is ASCII only so no numbers, spaces, or semicolons.
 # Example: Doki Doki Yuri Time to DokiDokiYuriTime
-define build.name = "MonikaHasAGun"
+define build.name = "MonikaGoesPostal"
 
 # This configures whether your mod has sound effects (e.g. slap sound effects) or not.
 # It is best to leave this set to True default.

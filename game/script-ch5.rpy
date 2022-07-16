@@ -207,13 +207,14 @@ label ch5_main:
     window auto
     play music td
     scene bg sayori_bedroom with None
-    pause 3.8
-    stop music fadeout 1
+    pause 2.3
+    stop music fadeout 2
     # original writing from here on out
     "She's still sound asleep."
     "I decide to shake her awake."
     mc "Come on, dummy, it's time for school!"
     "She slowly blinks herself awake."
+    play music t2
     show sayori 1bb at t11
     s "...It is?"
     "Then she looks over at her alarm clock, which says the time is 09:12."
@@ -222,7 +223,9 @@ label ch5_main:
     "Sayori makes eggs and toast for breakfast, despite my objections."
     "I can't deny it was delicious, though."
     "Afterwards, we make way for the school."
-    scene bg club_day with wipeleft_scene
+    stop music fadeout 2
+    scene bg club_day with dissolve_scene_full
+    play music t3
     show sayori 1a at t21
     show monika 5a at t22
     m "Hi, [player]!"
@@ -258,7 +261,7 @@ label ch5_main:
         linear 0.25 alpha 0
     show sayori 1m
     mc "What was that?"
-    m "Woops, I accidentally broke a shelf. My bad!"
+    m "Woops, I accidentally... {w=0.3}broke a shelf. My bad!"
     show sayori 1b
     mc "O...kay..."
     m "Oh, there it is! Hey, Yuri, you're pretty tall, maybe you can grab this from the top shelf?"
@@ -268,8 +271,8 @@ label ch5_main:
     hide yuri
     "Yuri heads over to the closet."
     mc "How do you break one of those shelves? Aren't they made out of metal?"
-    m "Uh, very carefully, [player]. Very carefully."
-    mc "That's {i}hilarious{/i}, Monika. Where do you get your jokes, {i}the back of a Laffy Taffy?{/i}"
+    m "Uh, {w=0.3}very carefully, [player]. {w=0.3}Very carefully."
+    mc "That's {i}hilarious{/i}, Monika. Where do you get your jokes, {w=0.3}{i}the back of a Laffy Taffy?{/i}"
     s 1j "Don't be mean to Monika, she's trying her best."
     mc "She's {i}breaking{/i} a {i}metal{/i} shelf."
     mc "How do you {i}do{/i} that?"
@@ -311,9 +314,9 @@ label ch5_main:
     scene bg closet
     show monika 1a at t11 zorder 2
     with wipeleft_scene
-    "Monika is holding a gun and is covered in blood."
-    "(Not pictured: the gun, or the blood, because MineRobber simultaneously lacks the artistic talent to draw them and lacks the money to commission someone who does.)"
-    "(Just pretend she's holding a gun, and is covered in blood, because MC is going to react as such.)"
+    "The interior of the closet just to the left of the doorway is covered in blood."
+    "On the ground, next to the dead bodies of the other Literature Club members, is a gun."
+    "Surprisingly, Monika herself is spotless."
     mc "Uh... Monika?"
     m 1b "Yes?"
     "She seems oblivious to the current situation she is in."
@@ -323,9 +326,7 @@ label ch5_main:
     m 1d "Oh, you mean... this?"
     m 1i "They were in my way."
     m "I had to get rid of them."
-    "Speaking of, blood oozes out of the closet."
-    "(Need I even make the note?)"
-    "(If anyone has some spare time and wants to help him out, MineRobber will happily give credit, but he can't afford to pay anyone.)"
+    "The {i}entire{/i} floor of the closet is covered in blood, mind you."
     mc "What the fuck?"
     "That's all I can say at this point."
     m "Now we can be together forever."

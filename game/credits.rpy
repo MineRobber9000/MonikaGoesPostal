@@ -67,58 +67,58 @@ label credits:
 
 # This is where the credit scroll starts
 label credits2:
-    
+
     python:
         if not player: player = "The Player"
-    
+
     show credits_header "Mod Concept" as credits_h1 at credits_scroll
     show credits_text "My friend Liam" as credits_t1 at credits_scroll
     with None
-    
+
     pause 10
-    
+
     show credits_header "Mod Design" as credits_h2 at credits_scroll
     show credits_text "MineRobber" as credits_t2 at credits_scroll
     with None
-    
+
     pause 10
-    
-    show credits_header "Lack Of Artistic Talent" as credits_h3 at credits_scroll
-    show credits_text "Also MineRobber" as credits_t3 at credits_scroll
+
+    show credits_header "Mod Art" as credits_h3 at credits_scroll
+    show credits_text "Literally just the base game art\nI had no money and still don't" as credits_t3 at credits_scroll
     with None
-    
+
     pause 10
-    
+
     show credits_header "Writing" as credits_h1 at credits_scroll
     show credits_text "Honestly most of it was just Dan's writing\nMineRobber only wrote the ending" as credits_t1 at credits_scroll
     with None
-    
+
     pause 8
-    
+
     show credits_header "Characters, in order of appearance" as credits_h2 at credits_scroll
-    show credits_text "[player] - [player]\nSayori - Sayori\nYuri - Yuri\nNatsuki - Natsuki\nMonika - Monika" as credits_t2 at credits_scroll
+    show credits_text "[player] - [player]\nMonika - Monika\nSayori - Sayori\nNatsuki - Natsuki\nYuri - Yuri" as credits_t2 at credits_scroll
     with None
-    
+
     pause 12
-    
+
     show credits_header "Special Thanks" as credits_h3 at credits_scroll
     show credits_text "Monika\n[player]" as credits_t3 at credits_scroll
     with None
-    
+
     pause 8
-    
+
     python:
         import datetime
         currentyear = datetime.date.today().year
         # Word of God says they're all 18 so just subtract 18 from currentyear
         birthyear = currentyear-18
-    
+
     show credits_header "In Memoriam" as credits_h1 at credits_scroll
     show credits_text "Sayori, Natsuki, Yuri, and Monika\n[birthyear] - [currentyear]" as credits_t1 at credits_scroll
     with None
-    
+
     pause 10
-    
+
     # Shows the Team Salvato Logo
     show credits_ts
     show credits_text "with apologies to": # lul
@@ -144,7 +144,7 @@ label credits2:
         # Fade to black, show Monika.
         scene black
         show monika 2i at t11
-        
+
         # Ferris Bueller time
         $ m_name = "Monika"
         m "...You're still here?"

@@ -1,6 +1,6 @@
 # Script.rpy
 # This is the main script that DDLC/Ren'Py calls upon to start
-# your mod's story! 
+# your mod's story!
 
 label start:
 
@@ -12,17 +12,17 @@ label start:
     # Controls what chapter the game starts for the poem game.
     $ chapter = 0
 
-    # This makes sure if the user quits during pause, 
+    # This makes sure if the user quits during pause,
     # it is set to false after restarting the game. Precaution.
     $ _dismiss_pause = config.developer
 
     # Names of the Characters
     # To add a character -> $ mi_name = "Mike". Don't forget to
     # add them also in definitions.rpy!
-    $ s_name = "???"
-    $ m_name = "Girl 3"
-    $ n_name = "Girl 2"
-    $ y_name = "Girl 1"
+    $ s_name = "Sayori"
+    $ m_name = "Monika"
+    $ n_name = "Natsuki"
+    $ y_name = "Yuri"
 
     # Controls whether we have a menu in the textbox or not.
     $ quick_menu = True
@@ -33,7 +33,7 @@ label start:
 
     # Controls whether Sayori is dead. Leave this alone unless needed.
     $ in_sayori_kill = None
-    
+
     # Controls whether we allow skipping dialogue.
     $ allow_skipping = True
     $ config.allow_skipping = True
@@ -43,33 +43,35 @@ label start:
     # 'call tutorial_selection' controls what label to call from in your script files
     # Make sure to change this when coding your mod, else your player will face a script error
 
-    $ chapter = 0
-    call ch0_main
-    call poem
+    # $ chapter = 0
+    # call ch0_main
+    # call poem
+    #
+    # # Day 1
+    # $ chapter = 1
+    # call ch1_main
+    # # 'call poemresponse_start' calls the poem response game
+    # call poemresponse_start
+    # call ch1_end
+    #
+    # call poem
+    #
+    # $ chapter = 2
+    # call ch2_main
+    # call poemresponse_start
+    # call ch2_end
+    #
+    # call poem
+    #
+    # $ chapter = 3
+    # call ch3_main
+    # call poemresponse_start
+    # call ch3_end
+    #
+    # $ chapter = 4
+    # call ch4_main
 
-    # Day 1
-    $ chapter = 1
-    call ch1_main
-    # 'call poemresponse_start' calls the poem response game
-    call poemresponse_start
-    call ch1_end
-
-    call poem
-
-    $ chapter = 2
-    call ch2_main
-    call poemresponse_start
-    call ch2_end
-
-    call poem
-
-    $ chapter = 3
-    call ch3_main
-    call poemresponse_start
-    call ch3_end
-
-    $ chapter = 4
-    call ch4_main
+    call skip_to_ch5
 
     ## try: renpy.file(config.basedir + "/hxppy thxughts.png") checks if there is a file
     # where DDLC.exe (.app/.sh for MacOS/Linux) called 'hxppy thxughts.png'
@@ -93,7 +95,7 @@ label start:
     call endgame
     jump credits
 
-# the end label of the game. Not the credits.    
+# the end label of the game. Not the credits.
 label endgame(pause_length=4.0):
     $ quick_menu = False
     stop music fadeout 2.0
@@ -103,4 +105,3 @@ label endgame(pause_length=4.0):
     pause pause_length
     $ quick_menu = True
     return
-

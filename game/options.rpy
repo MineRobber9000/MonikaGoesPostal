@@ -1,7 +1,7 @@
 ﻿# Options.rpy
 ## This template version is 2.4.6. When asked to provide the template version you are using,
 ## give them this version number. DO NOT REMOVE OR CHANGE THIS COMMENT.
-   
+
 # This is where you will name your mod!
 # Change "DDLC Mod Template 2.0" to your mod name (e.g. "Yuri")
 define config.name = "Monika Goes Postal"
@@ -13,8 +13,8 @@ define gui.show_name = True
 # This is where you will input the version of your mod.
 # If you have multiple versions of your mod, this will be pretty useful to change.
 # If you are starting out, set this to "1.0"
-define config.version = "1.0.1"
-define tagline = "Lack Of Artistic Talent But With The Correct Credits This Time"
+define config.version = "1.1"
+define tagline = "IT'S BEEN THREE THOUSAND YEARS! Or just one I guess..."
 
 # This adds information about your mod in the About section.
 # DDLC does not have a about section so you can leave this blank.
@@ -72,7 +72,7 @@ define config.window_show_transition = Dissolve(.2)
 define config.window_hide_transition = Dissolve(.2)
 
 # This sets the text speed of your mod.
-# By default this is set to 50. 
+# By default this is set to 50.
 # Increasing this number will speed up text while decreasing the number slows down text speed.
 # 0 is instant text display.
 default preferences.text_cps = 50
@@ -111,7 +111,7 @@ define config.autosave_on_quit = False
 # This controls the number of slots auto-saving can use
 define config.autosave_slots = 0
 
-# This controls the layers of screens, images, and more. 
+# This controls the layers of screens, images, and more.
 # Best not to leave this alone.
 define config.layers = [ 'master', 'transient', 'screens', 'overlay', 'front' ]
 
@@ -126,8 +126,8 @@ init python:
     if len(renpy.loadsave.location.locations) > 1: del(renpy.loadsave.location.locations[1])
     renpy.game.preferences.pad_enabled = False
     def replace_text(s):
-        s = s.replace('--', u'\u2014') 
-        s = s.replace(' - ', u'\u2014') 
+        s = s.replace('--', u'\u2014')
+        s = s.replace(' - ', u'\u2014')
         return s
     config.replace_text = replace_text
 
@@ -172,19 +172,19 @@ init python:
     build.archive("scripts", 'mod')
     build.archive("mod_assets", 'mod')
 
-    ## Do not touch this. This is so Ren'Py can add the .sh file 
+    ## Do not touch this. This is so Ren'Py can add the .sh file
     ## for Linux/Mac to run your mod.
     try:
         build.renpy_patterns.remove((u'renpy.py', [u'all']))
     except:
         pass
     build.classify_renpy("renpy.py", "renpy all")
-    
+
     #############################################################
 
     # To classify packages for both pc and android, make sure to add all to it like so
     # Example: build.classify("game/**.pdf", "scripts all")
-    
+
     build.classify("game/mod_assets/**", "mod_assets all")
     build.classify("game/**.rpyc", "scripts all")
     build.classify("game/README.txt", None)
